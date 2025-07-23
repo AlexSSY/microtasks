@@ -22,4 +22,5 @@ class Task(Base, BaseFieldsMixin):
     __tablename__ = "tasks"
 
     name = Column(String, nullable=False)
+    description = Column(String, nullable=False)
     user_id = Column(Integer, nullable=False)
