@@ -12,6 +12,7 @@ from aiogram.filters import CommandStart
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
+from pydantic import BaseModel, Field
 
 import crud
 
@@ -56,6 +57,11 @@ async def tasks_handler(message: Message):
 class AddTaskForm(StatesGroup):
     name = State()
     description = State()
+
+
+class AddTaskModel(BaseModel):
+    name: str = Field(min_length=5)
+    description: str = Field(min_length=20)
 
 
 @dp.message(F.text=="Add Task")
